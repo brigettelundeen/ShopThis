@@ -1,0 +1,18 @@
+<form class="form-inline shopping-list">
+    <h1>Shopping List</h1>
+    
+    <h3>Add a new item:</h3>
+    <input type="text" value="" ng-model="itemText">
+    <input type="button" class="btn" ng-click="addItem(itemText)" value="Add">
+    
+    <h3>In your list:</h3>
+    <ul>
+        <li ng-repeat="item in shoppingItems">
+            <label class="checkbox inline">
+                <input type="checkbox" id="completedCheck" value="completed">
+            </label>
+            <input type="text" value="{{item.text}}">
+            <input type="button" class="btn" ng-click="removeItem(item)" value="Delete">
+        </li>
+    </ul>
+</form>
