@@ -10,14 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
-<body ng-app="ShoppingApp">
+<body ng-app="ListItApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -28,7 +28,12 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container">
+        <h1>List.It</h1>
+        <p>Manage all your lists in one place and automatically sync with all your devices.</p>
+        
+        <div id="body" ng-view=""></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -43,7 +48,7 @@
         ga('send', 'pageview');
     </script>
 
-    <script src='https://workoutlogger.azure-mobile.net/client/MobileServices.Web-1.0.0.min.js'></script>
+    <script src='https://seriouslists.azure-mobile.net/client/MobileServices.Web-1.0.0.min.js'></script>
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
@@ -71,8 +76,9 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/resources/ShoppingListData.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/resources/ListData.js"></script>
+    <script src="scripts/controllers/lists.js"></script>
+    <script src="scripts/controllers/listitems.js"></script>
     <!-- endbuild -->
 </body>
 </html>

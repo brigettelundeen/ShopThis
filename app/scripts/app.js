@@ -1,14 +1,18 @@
 'use strict';
 
-var shoppingApp = angular.module('ShoppingApp', ['ngResource']);
+var Listit = angular.module('ListItApp', ['ngResource']);
 
-shoppingApp.config(function ($routeProvider, $httpProvider) {
-    $httpProvider.defaults.headers.common["X-ZUMO-APPLICATION"] = "WJhrbQdhhyjgTvxJHjmcjucxnuiyYb54";
+Listit.config(function ($routeProvider, $httpProvider) {
+    $httpProvider.defaults.headers.common["X-ZUMO-APPLICATION"] = "deHcYguFWpBdJcEQYeiSQSlfZseKjK11";
    
     $routeProvider
         .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'ShoppingListCtrl'
+            templateUrl: 'views/lists.html',
+            controller: 'ListCtrl'
+        })
+        .when('/list/:listId', {
+            templateUrl: 'views/listitems.html',
+            controller: 'ListItemsCtrl'
         })
         .otherwise({
             redirectTo: '/'
