@@ -25,7 +25,7 @@
         <li ng-repeat="list in lists">
             <div>
                 <a type="button" class="btn" ng-href="#/list/{{list.id}}">See items</a>
-                <input type="button" class="btn" ng-click="removeList(list)" value="Delete">
+                <input type="button" class="btn" ng-click="removeList($index)" value="Delete">
             </div>
             <p class="list-name">{{list.name}}</p>
             <p>{{list.description}}</p>
