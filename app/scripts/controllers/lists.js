@@ -1,19 +1,20 @@
 'use strict';
 
 Listit.controller('ListCtrl',
-    function ($scope, listData) {
-        $scope.lists = listData.query();
+    function ($scope, listService) {
+        $scope.lists = listService.query();
 
-        $scope.removeList = function (item) {
-            listData.remove(item);
-            
-            $scope.lists = listData.query();
+        $scope.removeList = function (index) {
+            var listToRemove = $scope.lists[index];
+            listService.remove(listToRemove);
+            $scope.lists.splice(index, 1);
         };
         
         $scope.addList = function () {
-            var newItem = { name: $scope.listName, description: $scope.listDescription };
-            listData.add(newItem);
-            $scope.lists = listData.query();
+            var newList = { name: $scope.listName, description: $scope.listDescription };
+            listService.save(newList, function (data) {
+                $scope.lists.push(data);
+            });
             $scope.listName = '';
             $scope.listDescription = '';
         };

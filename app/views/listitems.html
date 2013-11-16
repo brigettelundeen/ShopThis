@@ -1,16 +1,17 @@
-<form class="form-inline">
+<form class="form-inline" ng-submit="addItem()">
     <h3>Add a new item:</h3>
     <input type="text" value="" ng-model="itemText" />
-    <input type="button" class="btn" ng-click="addItem(itemText)" value="Add" />
-    
-    <h3>In your {{listName}} list:</h3>
-    <ul class="pretty-lists">
-        <li ng-repeat="item in items">
-            <label class="checkbox inline">
-                <input type="checkbox" id="Checkbox1" value="completed">
-            </label>
-            <input type="text" value="{{item.text}}" />
-            <input type="button" class="btn" ng-click="removeItem(item)" value="Delete" />
-        </li>
-    </ul>
-</form>
+    <input type="submit" class="btn" value="Add" />
+</form>    
+
+<h3>In your {{listName}} list:</h3>
+<ul class="pretty-lists">
+    <li ng-repeat="item in items">
+        <label class="checkbox inline">
+            <input type="checkbox" ng-change="changedStatus(item)" ng-model="item.complete" />
+        </label>
+        <input type="text" ng-model="item.text" value="{{item.text}}" />
+        <input type="button" class="btn" ng-click="removeItem($index)" value="Delete" />
+    </li>
+</ul>
+

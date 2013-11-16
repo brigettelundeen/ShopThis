@@ -1,31 +1,37 @@
 'use strict';
 
 Listit.controller('ListItemsCtrl',
-    function ($scope, $routeParams, getListItemData, listItemData, listData) {
-        var currentList = null;
-        if ($routeParams.listId) {
-            currentList = $routeParams.listId;
-        }
+    function ($scope, $routeParams, listItemService, listService) {
+        var currentList = $routeParams.listId ? $routeParams.listId : null,
+            filter = "(listId eq " + currentList + ")";
+
         if (currentList == null) {
             return;
         }
-        var filter = "(listId eq " + currentList + ")";
+        
+        $scope.items = listItemService.query({ $filter: filter });
 
-        //var list = listData.getList({ $filter: "(id eq " + currentList + ")" });
-        //$scope.listName = list;
+        $scope.changedStatus = function (item) {
+            listItemService.update({ id: item.id }, item, function () {
+                console.log('successfully updated');
+            }, function(errorObject) {
+                console.log('error updating');
+                console.log(errorObject);
+            });
+        };
         
-        //$scope.items = getListItemData.query();
-        $scope.items = getListItemData.query({ $filter: filter });
-        
-        $scope.removeItem = function(item) {
-            listItemData.remove(item);
-            $scope.items = listItemData.query({ $filter: filter });
+        $scope.removeItem = function (index) {
+            var itemToRemove = $scope.items[index];
+            listItemService.remove(itemToRemove);
+            $scope.items.splice(index, 1);
         };
         
         $scope.addItem = function () {
             var newItem = { text: $scope.itemText, complete: false, listId: currentList };
-            listItemData.add(newItem);
-            $scope.items = listItemData.query({ $filter: filter });
+            listItemService.save(newItem, function (data) {
+                console.log('added new list item');
+                $scope.items.push(data);
+            });
             $scope.itemText = '';
         };
     }
