@@ -8,9 +8,9 @@
 <ul class="pretty-lists">
     <li ng-repeat="item in items">
         <label class="checkbox inline">
-            <input type="checkbox" ng-change="changedStatus(item)" ng-model="item.complete" />
+            <input type="checkbox" ng-change="updateItem(item)" ng-model="item.complete" />
         </label>
-        <input type="text" ng-model="item.text" value="{{item.text}}" />
+        <input type="text" ng-model="item.text" ng-change="updateItem(item)" value="{{item.text}}" />
         <input type="button" class="btn" ng-click="removeItem($index)" value="Delete" />
     </li>
 </ul>

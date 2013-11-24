@@ -11,10 +11,10 @@ Listit.controller('ListItemsCtrl',
         
         $scope.items = listItemService.query({ $filter: filter });
 
-        $scope.changedStatus = function (item) {
+        $scope.updateItem = function (item) {
             listItemService.update({ id: item.id }, item, function () {
                 console.log('successfully updated');
-            }, function(errorObject) {
+            }, function (errorObject) {
                 console.log('error updating');
                 console.log(errorObject);
             });
